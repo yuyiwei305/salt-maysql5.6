@@ -3,7 +3,8 @@ include:
 
 mysql-all-install:
   cmd.run:
-    - name: cd /opt/mysql-5.6.23 &&  cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc  -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=3306   -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci && make && make install 
+    - name: cd /opt/mysql-5.6.23 &&  cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc  -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=3306   -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci && make && make install && touch /tmp/mysql-all.lock
+    - unless: test -e /tmp/mysql-all.lock
 
     - require:
       - cmd: mysql-tar-manage

@@ -1,5 +1,5 @@
 mysql-lib-install:
-  pkg.install:
+  pkg.installed:
     - names:
       - gcc
       - gcc-c++
@@ -9,6 +9,7 @@ mysql-lib-install:
       - cmake
       - openssl
       - openssl-devel
+      - perl-Module-Install.noarch
 
 mysql-tar-manage:
   file.managed:
